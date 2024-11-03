@@ -43,11 +43,6 @@ class TransformerModel:
 ![image](https://github.com/user-attachments/assets/825c9ee4-926d-49e2-b0ff-4955de5dcc1c)
 ![image](https://github.com/user-attachments/assets/a0ac3148-615c-45ea-889f-87a17af29981)
 
-## インストール方法
-
-```bash
-pip install -r requirements.txt
-```
 
 ## 使用方法
 
