@@ -1,74 +1,100 @@
-# 行動解析 Transformer
+# Behavioral Analysis Transformer
 
-## DeepHLについて
+## About DeepHL
+DeepHL (Deep Highlighting) is a deep learning-based system that automatically identifies and analyzes meaningful segments in animal trajectory data. Using attention mechanisms, this system automatically highlights parts of trajectories that characterize differences between two groups, helping researchers discover new behavioral patterns.
 
-DeepHL（Deep Highlighting）は、動物の軌跡データにおいて意味のある部分を自動的に特定・分析する深層学習ベースのシステムです。このシステムは、アテンション機構を使用して2つのグループ間の違いを特徴づける軌跡の部分を自動的にハイライトし、研究者が新しい行動パターンを発見することを支援します。
+## Project Overview
+This repository provides a Transformer-based neural network for analyzing mouse trajectory data obtained through DeepLabCut. Similar to DeepHL, it offers the following capabilities:
+* Automatic identification of important behavioral segments
+* Highlighting behaviorally significant patterns
+* Presenting noteworthy behaviors to researchers
+* Visualizing behavioral differences in an interpretable format
 
-## プロジェクト概要
+## Key Features
 
-このリポジトリは、DeepLabCutで取得したマウスの軌跡データを解析するTransformerベースのニューラルネットワークを提供します。DeepHLと同様に、以下の機能を備えています：
+### Data Processing
+- Loading coordinate data from DeepLabCut output
+- Calculation of basic movement features including:
+  - Velocity
+  - Angular velocity
+  - Distance from starting position
+  - Movement patterns
+- Sequence preparation for Transformer models
 
-* 行動の重要なセグメントを自動的に特定
-* 行動学的に重要なパターンをハイライト
-* 研究者に注目すべき行動を提示
-* 行動の違いを解釈可能な形で可視化
-
-## 主な機能
-
-### データ処理
-
-- DeepLabCutの出力座標データの読み込み
-- 以下の基本的な移動特徴量の計算：
-  - 速度
-  - 角速度
-  - 開始位置からの距離
-  - 移動パターン
-- Transformerモデル用のシーケンス準備
-
-### Transformerモデル
-
+### Transformer Model
 ```python
 class TransformerModel:
-    - マルチヘッドアテンション機構
-    - 時間情報のための位置エンコーディング
-    - レイヤー単位のアテンション機構
-    - 行動分析用の分類ヘッド
+    - Multi-head attention mechanism
+    - Positional encoding for temporal information
+    - Layer-wise attention mechanism
+    - Classification head for behavioral analysis
 ```
 
-### 可視化機能
+### Visualization Features
+* Trajectory highlighting based on attention weights
+* Interactive visualization of important behavioral segments
+* Correlation analysis with manually designed features
 
-* アテンションの重みに基づく軌跡のハイライト
-* 重要な行動セグメントのインタラクティブな可視化
-* 手作業で設計した特徴量との相関分析
 ![image](https://github.com/user-attachments/assets/825c9ee4-926d-49e2-b0ff-4955de5dcc1c)
 ![image](https://github.com/user-attachments/assets/a0ac3148-615c-45ea-889f-87a17af29981)
 
 
-## 使用方法
+# Behavioral Analysis Transformer
 
+## About DeepHL
+DeepHL (Deep Highlighting) is a deep learning-based system that automatically identifies and analyzes meaningful segments in animal trajectory data. Using attention mechanisms, this system automatically highlights parts of trajectories that characterize differences between two groups, helping researchers discover new behavioral patterns.
+
+## Project Overview
+This repository provides a Transformer-based neural network for analyzing mouse trajectory data obtained through DeepLabCut. Similar to DeepHL, it offers the following capabilities:
+* Automatic identification of important behavioral segments
+* Highlighting behaviorally significant patterns
+* Presenting noteworthy behaviors to researchers
+* Visualizing behavioral differences in an interpretable format
+
+## Key Features
+
+### Data Processing
+- Loading coordinate data from DeepLabCut output
+- Calculation of basic movement features including:
+  - Velocity
+  - Angular velocity
+  - Distance from starting position
+  - Movement patterns
+- Sequence preparation for Transformer models
+
+### Transformer Model
+```python
+class TransformerModel:
+    - Multi-head attention mechanism
+    - Positional encoding for temporal information
+    - Layer-wise attention mechanism
+    - Classification head for behavioral analysis
+```
+
+### Visualization Features
+* Trajectory highlighting based on attention weights
+* Interactive visualization of important behavioral segments
+* Correlation analysis with manually designed features
+
+## Usage
 ```python
 from mouse_analyzer import MouseTrajectoryDataset, TransformerModel
-
-# データの読み込み
+# Load data
 dataset = MouseTrajectoryDataset("dlc_output.csv")
-
-# モデルの初期化
+# Initialize model
 model = TransformerModel(
     input_dim=dataset.features.shape[1],
     d_model=128,
     nhead=8,
     num_layers=4
 )
-
-# モデルの訓練
+# Train model
 history = train_model(model, dataset)
-
-# 結果の可視化
+# Visualize results
 visualize_results(dataset, model)
 ```
 
-## 必要環境
-
+## Requirements
 * Python 3.7+
 * PyTorch 1.7+
 * pandas
@@ -76,19 +102,16 @@ visualize_results(dataset, model)
 * matplotlib
 * seaborn
 
-## 解析の流れ
+## Analysis Workflow
+1. Load coordinate data obtained from DeepLabCut
+2. Calculate basic behavioral features
+3. Identify important segments using the Transformer model
+4. Highlight areas of interest using attention mechanisms
+5. Visualize and interpret results
 
-1. DeepLabCutで取得した座標データを読み込み
-2. 基本的な行動特徴量を計算
-3. Transformerモデルで重要なセグメントを特定
-4. アテンション機構を用いて注目すべき部分をハイライト
-5. 結果の可視化と解釈
-
-## 参考文献
-
+## References
 - DeepHL: Deep learning-assisted comparative analysis of animal trajectories with DeepHL (Nature Communications, 2020)
 - DeepLabCut: Markerless pose estimation of user-defined body parts with deep learning
-
 
 
 
